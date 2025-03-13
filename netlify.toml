@@ -1,2 +1,33 @@
-[build]
-    functions = "functions"
+[functions]
+  external_node_modules = ["express"]
+  node_bundler = "esbuild"
+[[redirects]]
+  force = true
+  from = "/auth/*"
+  status = 200
+  to = "/.netlify/functions/auth/:splat"
+  [[redirects]]
+  force = true
+  from = "/events/*"
+  status = 200
+  to = "/.netlify/functions/events/:splat"
+   [[redirects]]
+  force = true
+  from = "/events/*"
+  status = 200
+  to = "/.netlify/functions/events/:splat"
+   [[redirects]]
+  force = true
+  from = "/admin/*"
+  status = 200
+  to = "/.netlify/functions/admin/:splat"
+   [[redirects]]
+  force = true
+  from = "/trades/*"
+  status = 200
+  to = "/.netlify/functions/trades/:splat"
+   [[redirects]]
+  force = true
+  from = "/"
+  status = 200
+  to = "/.netlify/functions/"
