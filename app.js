@@ -16,10 +16,17 @@ const io = socketService.setupSocket(server);
 
 app.use(express.json());
 
+const router = express.Router();
+
+router.get("/", (req, res) => {
+  res.send("App is running..");
+});
+
 app.use("/.netlify/functions/app/auth", authRoutes);
 app.use("/.netlify/functions/app/events", eventRoutes);
 app.use("/.netlify/functions/app/trades", tradeRoutes);
 app.use("/.netlify/functions/app/admin", adminRoutes);
+app.use("/.netlify/functions/app", router);
 
 app.use((err, req, res, next) => {
   logger.error(err.stack);
