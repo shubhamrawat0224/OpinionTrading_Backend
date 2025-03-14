@@ -1,33 +1,11 @@
-[functions]
-  external_node_modules = ["express"]
-  node_bundler = "esbuild"
+[build]
+  functions = "functions"
+
+[dev]
+  command = "node app.js"  # For local development
+  targetPort = 3000          # Port your Express app runs on
+
 [[redirects]]
-  force = true
-  from = "/auth/*"
+  from = "/api/*"
+  to = "/.netlify/functions/express-app"
   status = 200
-  to = "/.netlify/functions/auth/:splat"
-  [[redirects]]
-  force = true
-  from = "/events/*"
-  status = 200
-  to = "/.netlify/functions/events/:splat"
-   [[redirects]]
-  force = true
-  from = "/events/*"
-  status = 200
-  to = "/.netlify/functions/events/:splat"
-   [[redirects]]
-  force = true
-  from = "/admin/*"
-  status = 200
-  to = "/.netlify/functions/admin/:splat"
-   [[redirects]]
-  force = true
-  from = "/trades/*"
-  status = 200
-  to = "/.netlify/functions/trades/:splat"
-   [[redirects]]
-  force = true
-  from = "/"
-  status = 200
-  to = "/.netlify/functions/"
