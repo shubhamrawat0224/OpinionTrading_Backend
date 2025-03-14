@@ -1,12 +1,15 @@
 const Event = require("../models/event.model");
 const apiService = require("../services/api.service");
-const { io } = require("../../app");
+const { io } = require("../../functions/express-app");
+
+let ioInstance;
+
+function setIo(io) {
+  ioInstance = io;
+}
 
 async function getEvents(req, res) {
   try {
-    if (req.body) {
-      await Event.insertMany(req.body);
-    }
     let events = await Event.find();
     if (events.length === 0) {
       events = await apiService.fetchMockEvents();
@@ -24,7 +27,7 @@ async function createEvent(req, res) {
     const event = new Event(req.body);
     console.log(event);
     await event.save();
-    io.emit("eventCreated", event);
+    ioInstance.emit("eventCreated", event);
     res.status(201).json(event);
   } catch (error) {
     console.log(error.message);
@@ -32,4 +35,4 @@ async function createEvent(req, res) {
   }
 }
 
-module.exports = { getEvents, createEvent };
+module.exports = { getEvents, createEvent, setIo };

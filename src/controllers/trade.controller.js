@@ -65,12 +65,12 @@ async function settleTrades(eventId, result) {
           await user.save();
           trade.status = "settled";
           await trade.save();
-          io.emit("tradeSettled", trade);
+          ioInstance.emit("tradeSettled", trade);
         }
       } else {
         trade.status = "settled";
         await trade.save();
-        io.emit("tradeSettled", trade);
+        ioInstance.emit("tradeSettled", trade);
       }
     }
   } catch (error) {

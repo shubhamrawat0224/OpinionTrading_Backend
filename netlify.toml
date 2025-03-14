@@ -6,6 +6,6 @@
   targetPort = 3000          # Port your Express app runs on
 
 [[redirects]]
-  from = "/api/*"
+  from = "/*"
   to = "/.netlify/functions/express-app"
   status = 200
